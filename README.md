@@ -167,5 +167,4 @@ Untuk informasi lebih lanjut atau pertanyaan / For more information or inquiries
 
 **Terima kasih telah menggunakan Siapaya!** 🎉 / **Thank you for using Siapaya!** 🎉
 
-<!-- ![Siapaya Gif](https://media.giphy.com/media/13YZug5x3jC0mo/giphy.gif) -->
-<div style="width:100%;height:0;padding-bottom:101%;position:relative;"><iframe src="https://giphy.com/embed/BYoRqTmcgzHcL9TCy1" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/thank-you-thanks-thumbs-up-BYoRqTmcgzHcL9TCy1">via GIPHY</a></p>
+![Siapaya Gif](https://giphy.com/embed/BYoRqTmcgzHcL9TCy1)
