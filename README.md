@@ -1,120 +1,168 @@
-# Register Controller
+# Siapaya
 
-This Laravel controller handles the registration of new users in the application. It includes methods for displaying the registration form and storing new user data in the database.
-
----
-
-## Features
-
--   Validates user input to ensure data integrity.
--   Hashes passwords securely using Laravel's built-in `Hash` facade.
--   Prevents duplicate phone numbers in the `users` table.
--   Redirects users to the login page upon successful registration.
--   Provides success feedback to users.
+**Siapaya** adalah sebuah aplikasi web yang memungkinkan pengguna untuk menerima pesan anonim dari teman-teman mereka. Dengan antarmuka yang sederhana dan fitur yang aman, pengguna dapat berbagi tautan anonim dengan mudah.
 
 ---
 
-## Controller Methods
+## Fitur Utama
 
-### **index()**
+### 1. Bagikan Tautan Pesan Anonim
+- **Deskripsi:**
+  Pengguna dapat membagikan tautan unik mereka ke teman-teman untuk menerima pesan anonim.
+- **Cara Membagikan:**
+  - Tautan ditampilkan pada halaman.
+  - Dilengkapi dengan tombol salin untuk mempermudah proses penyalinan tautan.
 
--   Displays the registration form.
--   Returns the `Pages.Auth.Daftar.index` view.
+### 2. Permintaan Fitur Baru
+- **Deskripsi:**
+  Pengguna dapat mengirimkan permintaan fitur baru melalui WhatsApp admin.
+- **Cara Mengirim Permintaan:**
+  - Klik tombol "WhatsApp" yang tersedia.
+  - Tautan langsung menuju admin dengan template pesan yang siap digunakan.
 
-```php
-public function index()
-{
-    return view('Pages.Auth.Daftar.index');
+### 3. Bagikan ke Media Sosial
+- **Deskripsi:**
+  Pengguna dapat membagikan tautan mereka ke berbagai platform media sosial, seperti Facebook, Twitter, Instagram, dan WhatsApp.
+- **Media yang Didukung:**
+  - Facebook
+  - Twitter
+  - Instagram (melalui stiker tautan di Stories)
+  - WhatsApp
+
+---
+
+## Teknologi yang Digunakan
+- **Frontend:**
+  - Blade Templates (Laravel)
+  - Tailwind CSS
+  - FontAwesome untuk ikon
+  - SweetAlert2 untuk notifikasi interaktif
+
+- **Backend:**
+  - Laravel Framework
+  - Authentication dan Middleware bawaan Laravel
+
+---
+
+## Instalasi dan Penggunaan
+
+1. Clone repository ini:
+    ```bash
+    git clone <repository-url>
+    ```
+
+2. Masuk ke direktori project:
+    ```bash
+    cd siapaya
+    ```
+
+3. Instal dependensi menggunakan Composer:
+    ```bash
+    composer install
+    ```
+
+4. Instal dependensi frontend (jika diperlukan):
+    ```bash
+    npm install && npm run dev
+    ```
+
+5. Konfigurasi file `.env`:
+    - Database
+    - URL aplikasi
+
+6. Migrasi database:
+    ```bash
+    php artisan migrate
+    ```
+
+7. Jalankan server lokal:
+    ```bash
+    php artisan serve
+    ```
+
+8. Akses aplikasi melalui browser di `http://localhost:8000`.
+
+---
+
+## Dokumentasi API
+
+### Endpoint Terkait Tautan Pesan
+- **GET /dashboard**
+  - Menampilkan tautan anonim pengguna.
+
+- **POST /pesan**
+  - Mengirim pesan anonim ke pengguna terkait.
+
+### Endpoint Permintaan Fitur
+- **POST /fitur-baru**
+  - Mengirimkan permintaan fitur melalui formulir yang dikirimkan ke admin.
+
+---
+
+## Scripting dan Fungsionalitas Utama
+
+### Salin Tautan ke Clipboard
+```javascript
+function copyToClipboard() {
+    const linkInput = document.getElementById('linkInput');
+    const copyButton = document.getElementById('copyButton');
+
+    linkInput.select();
+    linkInput.setSelectionRange(0, 99999);
+
+    navigator.clipboard.writeText(linkInput.value)
+        .then(() => {
+            copyButton.innerHTML = '<i class="fas fa-check"></i><span>Tersalin!</span>';
+            setTimeout(() => {
+                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Salin</span>';
+            }, 2000);
+        })
+        .catch(() => {
+            alert('Gagal menyalin tautan.');
+        });
 }
 ```
 
-### **store(Request \$request)**
-
--   Handles the registration process.
--   Validates the following fields:
-    -   `name`: Required, string, max length 255.
-    -   `password`: Required, string, confirmed, min length 6.
-    -   `phone`: Required, string, max length 15, unique in the `users` table.
--   Creates a new user record in the `users` table with hashed password.
--   Redirects to the login page with a success message.
-
-```php
-public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'password' => 'required|string|confirmed|min:6',
-        'phone' => 'required|string|max:15|unique:users,phone',
-    ]);
-
-    User::create([
-        'name' => $request->name,
-        'password' => Hash::make($request->password),
-        'phone' => $request->phone,
-    ]);
-
-    return redirect()->route('masuk.index')->with('berhasil', 'Selamat, Anda berhasil mendaftar!');
+### Bagikan ke Instagram Stories
+```javascript
+function showInstagramStoryAlert() {
+    Swal.fire({
+        title: 'Bagikan ke Instagram Story',
+        text: 'Salin tautan Anda dan tambahkan di Instagram Stories menggunakan stiker tautan.',
+        icon: 'info',
+        confirmButtonText: 'Salin Link',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            navigator.clipboard.writeText("{{ url(Auth::user()->name) }}");
+        }
+    });
 }
 ```
 
 ---
 
-## Prerequisites
-
--   **Laravel Framework**: Ensure the Laravel framework is installed and configured.
--   **Database Migration**: Confirm the `users` table includes the following columns:
-    -   `name`
-    -   `password`
-    -   `phone` (unique column)
-
-Add the `phone` column if not present:
-
-```php
-Schema::table('users', function (Blueprint $table) {
-    $table->string('phone')->unique()->nullable();
-});
-```
-
--   **Password Confirmation Input**: Ensure the registration form includes a field for confirming the password.
-
----
-
-## Validation Rules
-
-| Field      | Rules                                   |
-| ---------- | --------------------------------------- |
-| `name`     | Required, string, max:255               |
-| `password` | Required, string, confirmed, min:6      |
-| `phone`    | Required, string, max:15, unique\:users |
+## Kontribusi
+Jika Anda ingin berkontribusi pada proyek ini:
+1. Fork repository ini.
+2. Buat branch baru:
+    ```bash
+    git checkout -b fitur-baru
+    ```
+3. Commit perubahan Anda:
+    ```bash
+    git commit -m "Menambahkan fitur baru"
+    ```
+4. Push branch:
+    ```bash
+    git push origin fitur-baru
+    ```
+5. Buat Pull Request.
 
 ---
 
-## Routes
-
-Add the following routes to handle registration:
-
-```php
-use App\Http\Controllers\WEb\Auth\RegisterController;
-
-Route::get('/register', [RegisterController::class, 'index'])->name('daftar.index');
-Route::post('/register', [RegisterController::class, 'store'])->name('daftar.store');
-```
+## Kontak
+Untuk informasi lebih lanjut atau pertanyaan, hubungi kami melalui WhatsApp: [WhatsApp Admin](https://wa.me/6285157433395)
 
 ---
 
-## Usage
-
-1. Navigate to the registration page using `/register`.
-2. Fill in the registration form fields (name, password, phone).
-3. Submit the form.
-4. If successful, you will be redirected to the login page with a success message.
-
----
-
-## Example Success Message
-
-Upon successful registration, users will see:
-
-```
-Selamat, Anda berhasil mendaftar!
-```
+**Terima kasih telah menggunakan Siapaya!**
