@@ -131,34 +131,6 @@
 
 ---
 
-## Kontribusi / Contributing 🙌
-
-Jika Anda ingin berkontribusi pada proyek ini / If you'd like to contribute to this project:
-
-1. Fork repository ini / Fork this repository.
-
-2. Buat branch baru / Create a new branch:
-
-    ```bash
-    git checkout -b fitur-baru / new-feature
-    ```
-
-3. Commit perubahan Anda / Commit your changes:
-
-    ```bash
-    git commit -m "Menambahkan fitur baru / Add new feature"
-    ```
-
-4. Push branch / Push the branch:
-
-    ```bash
-    git push origin fitur-baru / new-feature
-    ```
-
-5. Buat Pull Request / Create a Pull Request. ✨
-
----
-
 ## Kontak / Contact 📞
 
 Untuk informasi lebih lanjut atau pertanyaan / For more information or inquiries, hubungi kami melalui WhatsApp: [WhatsApp Admin](https://wa.me/6285157433395)
