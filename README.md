@@ -1,50 +1,50 @@
-# Siapaya
+# Siapaya 🎉
 
-**Siapaya** adalah sebuah aplikasi web yang memungkinkan pengguna untuk menerima pesan anonim dari teman-teman mereka. Dengan antarmuka yang sederhana dan fitur yang aman, pengguna dapat berbagi tautan anonim dengan mudah.
+**Siapaya** adalah sebuah aplikasi web yang memungkinkan pengguna untuk menerima pesan anonim dari teman-teman mereka. Dengan antarmuka yang sederhana dan fitur yang aman, pengguna dapat berbagi tautan anonim dengan mudah. 😎
 
 ---
 
-## Fitur Utama
+## Fitur Utama ✨
 
-### 1. Bagikan Tautan Pesan Anonim
+### 1. Bagikan Tautan Pesan Anonim 📲
 - **Deskripsi:**
-  Pengguna dapat membagikan tautan unik mereka ke teman-teman untuk menerima pesan anonim.
+  Pengguna dapat membagikan tautan unik mereka ke teman-teman untuk menerima pesan anonim. 🎤
 - **Cara Membagikan:**
   - Tautan ditampilkan pada halaman.
-  - Dilengkapi dengan tombol salin untuk mempermudah proses penyalinan tautan.
+  - Dilengkapi dengan tombol salin untuk mempermudah proses penyalinan tautan. 😁
 
-### 2. Permintaan Fitur Baru
+### 2. Permintaan Fitur Baru 🚀
 - **Deskripsi:**
-  Pengguna dapat mengirimkan permintaan fitur baru melalui WhatsApp admin.
+  Pengguna dapat mengirimkan permintaan fitur baru melalui WhatsApp admin. 💬
 - **Cara Mengirim Permintaan:**
   - Klik tombol "WhatsApp" yang tersedia.
-  - Tautan langsung menuju admin dengan template pesan yang siap digunakan.
+  - Tautan langsung menuju admin dengan template pesan yang siap digunakan. 💡
 
-### 3. Bagikan ke Media Sosial
+### 3. Bagikan ke Media Sosial 🌍
 - **Deskripsi:**
-  Pengguna dapat membagikan tautan mereka ke berbagai platform media sosial, seperti Facebook, Twitter, Instagram, dan WhatsApp.
+  Pengguna dapat membagikan tautan mereka ke berbagai platform media sosial, seperti Facebook, Twitter, Instagram, dan WhatsApp. 📢
 - **Media yang Didukung:**
-  - Facebook
-  - Twitter
-  - Instagram (melalui stiker tautan di Stories)
-  - WhatsApp
+  - Facebook 👍
+  - Twitter 🐦
+  - Instagram (melalui stiker tautan di Stories) 📸
+  - WhatsApp 💬
 
 ---
 
-## Teknologi yang Digunakan
+## Teknologi yang Digunakan 🛠️
 - **Frontend:**
-  - Blade Templates (Laravel)
-  - Tailwind CSS
-  - FontAwesome untuk ikon
-  - SweetAlert2 untuk notifikasi interaktif
+  - Blade Templates (Laravel) 💻
+  - Tailwind CSS 🌈
+  - FontAwesome untuk ikon 🎨
+  - SweetAlert2 untuk notifikasi interaktif 🍬
 
 - **Backend:**
-  - Laravel Framework
-  - Authentication dan Middleware bawaan Laravel
+  - Laravel Framework 🚀
+  - Authentication dan Middleware bawaan Laravel 🔐
 
 ---
 
-## Instalasi dan Penggunaan
+## Instalasi dan Penggunaan 🏗️
 
 1. Clone repository ini:
     ```bash
@@ -67,8 +67,8 @@
     ```
 
 5. Konfigurasi file `.env`:
-    - Database
-    - URL aplikasi
+    - Database 🗂️
+    - URL aplikasi 🌐
 
 6. Migrasi database:
     ```bash
@@ -80,11 +80,11 @@
     php artisan serve
     ```
 
-8. Akses aplikasi melalui browser di `http://localhost:8000`.
+8. Akses aplikasi melalui browser di `http://localhost:8000`. 🚀
 
 ---
 
-## Kontribusi
+## Kontribusi 🙌
 Jika Anda ingin berkontribusi pada proyek ini:
 1. Fork repository ini.
 
@@ -100,13 +100,15 @@ Jika Anda ingin berkontribusi pada proyek ini:
     ```bash
     git push origin fitur-baru
     ```
-5. Buat Pull Request.
+5. Buat Pull Request. ✨
 
 ---
 
-## Kontak
+## Kontak 📞
 Untuk informasi lebih lanjut atau pertanyaan, hubungi kami melalui WhatsApp: [WhatsApp Admin](https://wa.me/6285157433395)
 
 ---
 
-**Terima kasih telah menggunakan Siapaya!**
+**Terima kasih telah menggunakan Siapaya!** 🎉
+
+![Siapaya Gif](https://media.giphy.com/media/13YZug5x3jC0mo/giphy.gif)
