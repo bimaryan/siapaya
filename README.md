@@ -167,4 +167,5 @@ Untuk informasi lebih lanjut atau pertanyaan / For more information or inquiries
 
 **Terima kasih telah menggunakan Siapaya!** 🎉 / **Thank you for using Siapaya!** 🎉
 
-![Siapaya Gif](https://giphy.com/embed/BYoRqTmcgzHcL9TCy1)
+![Baby Thank You GIF](https://media.giphy.com/media/BYoRqTmcgzHcL9TCy1/giphy.gif)
+<!-- ![Baby Thank You GIF](https://giphy.com/embed/BYoRqTmcgzHcL9TCy1) -->
