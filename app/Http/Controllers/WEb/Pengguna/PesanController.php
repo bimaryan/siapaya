@@ -30,7 +30,7 @@ class PesanController extends Controller
 
         // Simpan pesan
         $pesan = new Pesan();
-        $pesan->users_id = $user->id; // Gunakan ID pengguna dari tabel users
+        $pesan->users_id = $user->id;
         $pesan->pesan = $request->pesan;
         $pesan->save();
 

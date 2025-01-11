@@ -1,66 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Register Controller
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This Laravel controller handles the registration of new users in the application. It includes methods for displaying the registration form and storing new user data in the database.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   Validates user input to ensure data integrity.
+-   Hashes passwords securely using Laravel's built-in `Hash` facade.
+-   Prevents duplicate phone numbers in the `users` table.
+-   Redirects users to the login page upon successful registration.
+-   Provides success feedback to users.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Controller Methods
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### **index()**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   Displays the registration form.
+-   Returns the `Pages.Auth.Daftar.index` view.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```php
+public function index()
+{
+    return view('Pages.Auth.Daftar.index');
+}
+```
 
-## Laravel Sponsors
+### **store(Request \$request)**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   Handles the registration process.
+-   Validates the following fields:
+    -   `name`: Required, string, max length 255.
+    -   `password`: Required, string, confirmed, min length 6.
+    -   `phone`: Required, string, max length 15, unique in the `users` table.
+-   Creates a new user record in the `users` table with hashed password.
+-   Redirects to the login page with a success message.
 
-### Premium Partners
+```php
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'password' => 'required|string|confirmed|min:6',
+        'phone' => 'required|string|max:15|unique:users,phone',
+    ]);
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    User::create([
+        'name' => $request->name,
+        'password' => Hash::make($request->password),
+        'phone' => $request->phone,
+    ]);
 
-## Contributing
+    return redirect()->route('masuk.index')->with('berhasil', 'Selamat, Anda berhasil mendaftar!');
+}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Prerequisites
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   **Laravel Framework**: Ensure the Laravel framework is installed and configured.
+-   **Database Migration**: Confirm the `users` table includes the following columns:
+    -   `name`
+    -   `password`
+    -   `phone` (unique column)
 
-## Security Vulnerabilities
+Add the `phone` column if not present:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->string('phone')->unique()->nullable();
+});
+```
 
-## License
+-   **Password Confirmation Input**: Ensure the registration form includes a field for confirming the password.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## Validation Rules
+
+| Field      | Rules                                   |
+| ---------- | --------------------------------------- |
+| `name`     | Required, string, max:255               |
+| `password` | Required, string, confirmed, min:6      |
+| `phone`    | Required, string, max:15, unique\:users |
+
+---
+
+## Routes
+
+Add the following routes to handle registration:
+
+```php
+use App\Http\Controllers\WEb\Auth\RegisterController;
+
+Route::get('/register', [RegisterController::class, 'index'])->name('daftar.index');
+Route::post('/register', [RegisterController::class, 'store'])->name('daftar.store');
+```
+
+---
+
+## Usage
+
+1. Navigate to the registration page using `/register`.
+2. Fill in the registration form fields (name, password, phone).
+3. Submit the form.
+4. If successful, you will be redirected to the login page with a success message.
+
+---
+
+## Example Success Message
+
+Upon successful registration, users will see:
+
+```
+Selamat, Anda berhasil mendaftar!
+```

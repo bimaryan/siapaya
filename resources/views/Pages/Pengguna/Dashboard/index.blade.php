@@ -30,18 +30,18 @@
         <div class="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-full max-w-screen-xl text-center">
             <h1 class="text-2xl font-bold mb-4">Minta Fitur Baru</h1>
             <p class="text-sm text-gray-400 mb-4">Apakah Anda memiliki ide fitur baru? Kirimkan permintaan fitur Anda
-                melalui DM Instagram kami @bima_ryan23!</p>
+                melalui WhatsApp kami di nomor admin!</p>
 
             <!-- Instructions -->
-            <p class="text-sm text-gray-400 mb-6">Kirimkan pesan Anda ke Instagram @bima_ryan23 untuk permintaan fitur.</p>
+            <p class="text-sm text-gray-400 mb-6">Kirimkan pesan Anda ke WhatsApp kami untuk permintaan fitur.</p>
 
-            <!-- Instagram DM Button -->
+            <!-- WhatsApp Button -->
             <div>
-                <a href="https://www.instagram.com/direct/new/?text=Halo,%20saya%20ingin%20mengajukan%20fitur%20baru%20untuk%20Siapaya!"
+                <a href="https://wa.me/6285157433395?text=Halo,%20saya%20ingin%20mengajukan%20fitur%20baru%20untuk%20Siapaya!"
                     target="_blank"
-                    class="bg-purple-600 hover:bg-purple-700 text-white rounded-md px-6 py-3 font-medium flex items-center justify-center space-x-2">
-                    <i class="fab fa-instagram"></i>
-                    <span>DM Instagram</span>
+                    class="bg-green-500 hover:bg-green-600 text-white rounded-md px-6 py-3 font-medium flex items-center justify-center space-x-2">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
                 </a>
             </div>
         </div>
@@ -69,7 +69,7 @@
                 </div>
                 <!-- Instagram Story -->
                 <div>
-                    <a href="https://www.instagram.com/stories" target="_blank"
+                    <a href="#" onclick="showInstagramStoryAlert()"
                         class="bg-pink-500 hover:bg-pink-600 text-white rounded-md px-4 py-2 text-sm flex items-center space-x-2">
                         <i class="fab fa-instagram"></i>
                         <span>Instagram</span>
@@ -115,6 +115,50 @@
                 .catch(() => {
                     alert('Gagal menyalin link. Silakan coba lagi.');
                 });
+        }
+        
+        function showInstagramStoryAlert() {
+            Swal.fire({
+                title: 'Bagikan ke Instagram Story',
+                text: 'Untuk membagikan link ke Instagram Stories, salin link Anda terlebih dahulu, lalu tambahkan di Stories menggunakan stiker tautan.',
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Salin Link',
+                cancelButtonText: 'Tutup',
+                reverseButtons: true,
+                buttonsStyling: false, // Nonaktifkan styling default
+                customClass: {
+                    confirmButton: 'bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-md',
+                    cancelButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const link = "{{ url(Auth::user()->name) }}";
+                    navigator.clipboard.writeText(link).then(() => {
+                        Swal.fire({
+                            title: 'Tautan Disalin!',
+                            text: 'Link Anda berhasil disalin. Sekarang buka Instagram dan tambahkan di Stories Anda.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-md'
+                            }
+                        });
+                    }).catch(() => {
+                        Swal.fire({
+                            title: 'Gagal Menyalin',
+                            text: 'Terjadi kesalahan saat menyalin tautan. Silakan coba lagi.',
+                            icon: 'error',
+                            confirmButtonText: 'OK',
+                            buttonsStyling: false,
+                            customClass: {
+                                confirmButton: 'bg-yellow-500 hover:bg-yellow-600 text-white font-medium px-4 py-2 rounded-md'
+                            }
+                        });
+                    });
+                }
+            });
         }
     </script>
 @endsection

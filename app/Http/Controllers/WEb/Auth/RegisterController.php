@@ -22,15 +22,10 @@ class RegisterController extends Controller
             'password'=> 'required|string|confirmed|min:6',
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'password' => Hash::make($request->password),
         ]);
-
-        // Pesan::create([
-        //     'users_id' => $user->id,
-        //     'pesan' => 'Selamat datang di aplikasi kami',
-        // ]);
 
         return redirect()->route('masuk.index')->with('berhasil', 'Selamat Anda Berhasil Mendaftar');
     }

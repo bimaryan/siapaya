@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use hisorange\BrowserDetect\Parser as Browser;
 
 class MultiGuard
 {
@@ -22,6 +23,13 @@ class MultiGuard
             if (Auth::guard($guard)->check()) {
                 Auth::shouldUse($guard);
                 return $next($request);
+            }
+
+            if (auth()->check()) {
+                auth()->user()->update([
+                    'browser' => Browser::browserName() . ' ' . Browser::browserVersion(),
+                    'device' => Browser::deviceType(),
+                ]);
             }
         }
 

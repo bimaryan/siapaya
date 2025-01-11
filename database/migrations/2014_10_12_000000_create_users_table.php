@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('password');
+            $table->string('phone')->nullable();
+            $table->string('browser')->nullable();
+            $table->string('device')->nullable();
             $table->timestamps();
         });
     }

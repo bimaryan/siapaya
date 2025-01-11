@@ -59,7 +59,6 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
             <a href="#features" class="block text-gray-800 px-4 py-2 hover:bg-gray-100">Fitur</a>
-            <a href="#about" class="block text-gray-800 px-4 py-2 hover:bg-gray-100">Tentang</a>
             <a href="#contact" class="block text-gray-800 px-4 py-2 hover:bg-gray-100">Kontak</a>
         </div>
     </nav>

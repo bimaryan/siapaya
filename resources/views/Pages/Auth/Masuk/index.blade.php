@@ -43,7 +43,7 @@
                         class="h-4 w-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500">
                     <label for="remember" class="ml-2 text-sm text-gray-300">Ingat Saya</label>
                 </div>
-                <a href="{{route('daftar.index')}}" class="text-sm text-gray-400 hover:underline">Daftar sekarang!</a>
+                <a href="{{ route('daftar.index') }}" class="text-sm text-gray-400 hover:underline">Daftar sekarang!</a>
             </div>
 
             <!-- Submit Button -->

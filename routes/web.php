@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\WEb\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\WEb\Admin\PenggunaController;
 use App\Http\Controllers\WEb\Auth\LoginController;
 use App\Http\Controllers\WEb\Auth\LogoutController;
 use App\Http\Controllers\WEb\Auth\RegisterController;
@@ -27,7 +29,16 @@ Route::get('/', function () {
 Route::resource('masuk', LoginController::class);
 Route::resource('daftar', RegisterController::class);
 
-Route::middleware('multiGuard:web')->group(function(){
+Route::middleware('auth:admin')->group(function () {
+    // ROUTE ADMIN
+    Route::resource('dashboard-admin', AdminDashboardController::class);
+    Route::resource('pengguna', PenggunaController::class);
+
+    Route::resource('keluar', LogoutController::class);
+});
+
+Route::middleware('multiGuard:web')->group(function () {
+    // ROUTE PENGGGUNA
     Route::resource('keluar', LogoutController::class);
     Route::resource('dashboard', DashboardController::class);
     Route::resource('semua-pesan', SemuaPesanController::class);
