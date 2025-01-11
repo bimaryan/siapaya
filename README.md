@@ -84,21 +84,6 @@
 
 ---
 
-## Dokumentasi API
-
-### Endpoint Terkait Tautan Pesan
-- **GET /dashboard**
-  - Menampilkan tautan anonim pengguna.
-
-- **POST /pesan**
-  - Mengirim pesan anonim ke pengguna terkait.
-
-### Endpoint Permintaan Fitur
-- **POST /fitur-baru**
-  - Mengirimkan permintaan fitur melalui formulir yang dikirimkan ke admin.
-
----
-
 ## Kontribusi
 Jika Anda ingin berkontribusi pada proyek ini:
 1. Fork repository ini.
