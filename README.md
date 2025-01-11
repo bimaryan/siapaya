@@ -99,48 +99,6 @@
 
 ---
 
-## Scripting dan Fungsionalitas Utama
-
-### Salin Tautan ke Clipboard
-```javascript
-function copyToClipboard() {
-    const linkInput = document.getElementById('linkInput');
-    const copyButton = document.getElementById('copyButton');
-
-    linkInput.select();
-    linkInput.setSelectionRange(0, 99999);
-
-    navigator.clipboard.writeText(linkInput.value)
-        .then(() => {
-            copyButton.innerHTML = '<i class="fas fa-check"></i><span>Tersalin!</span>';
-            setTimeout(() => {
-                copyButton.innerHTML = '<i class="fas fa-copy"></i><span>Salin</span>';
-            }, 2000);
-        })
-        .catch(() => {
-            alert('Gagal menyalin tautan.');
-        });
-}
-```
-
-### Bagikan ke Instagram Stories
-```javascript
-function showInstagramStoryAlert() {
-    Swal.fire({
-        title: 'Bagikan ke Instagram Story',
-        text: 'Salin tautan Anda dan tambahkan di Instagram Stories menggunakan stiker tautan.',
-        icon: 'info',
-        confirmButtonText: 'Salin Link',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            navigator.clipboard.writeText("{{ url(Auth::user()->name) }}");
-        }
-    });
-}
-```
-
----
-
 ## Kontribusi
 Jika Anda ingin berkontribusi pada proyek ini:
 1. Fork repository ini.
