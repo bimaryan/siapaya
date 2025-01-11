@@ -102,6 +102,7 @@
 ## Kontribusi
 Jika Anda ingin berkontribusi pada proyek ini:
 1. Fork repository ini.
+
 2. Buat branch baru:
     ```bash
     git checkout -b fitur-baru
